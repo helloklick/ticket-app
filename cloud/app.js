@@ -241,7 +241,7 @@ function sendEmail(ticket, subject, text, email) {
       }
     }
     if (__production && to) {
-      mg.sendRaw(_s.sprintf('AVOS Cloud Ticket System <%s>', config.emailHost),
+      mg.sendRaw(_s.sprintf('Beast Bike Ticket System <%s>', config.emailHost),
         [to],
           'From:' + config.emailHost +
           '\nTo: ' + to +
@@ -732,12 +732,12 @@ app.get('/tickets/:id/threads', function (req, res) {
   }, renderErrorFn(res));
 });
 
-var closeMsg = '关闭了 AVOS Cloud 上的工单，如果还有问题请及时联系。';
+var closeMsg = '关闭了 Beast Bike 上的工单，如果还有问题请及时联系。';
 function sendClientEmail(ticket, html) {
   var ticketSeq = getTicketId(ticket);
   var link = 'http://ticket.avosapps.com/tickets/' + ticket.id + '/threads';
   html = html + "<br/><p>请直接 <a href='" + link + "' target='_blank'>点击这里</a> 进入 AVOS Cloud 技术支持系统回复。</p>" +
-    "<p>谢谢，AVOS Cloud Team</p>";
+    "<p>谢谢，Beast Bike Team</p>";
   sendEmail(ticket, "AVOS Cloud 技术支持工单" + ticketSeq + " 更新", html, ticket.get('client_email'));
 }
 
